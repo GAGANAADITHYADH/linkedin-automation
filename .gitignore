@@ -4,3 +4,5 @@ target/
 .vscode/
 config.properties
 screenshots/
+debug_*.html
+login_page_source.html
