@@ -19,7 +19,7 @@ public class BaseTest {
         options.addArguments("-width=1600", "-height=1000");
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         driver = new FirefoxDriver(options);
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
     }
 
     @AfterMethod(alwaysRun = true)

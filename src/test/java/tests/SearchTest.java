@@ -1,3 +1,4 @@
+
 package tests;
 
 import base.BaseTest;
@@ -14,25 +15,40 @@ public class SearchTest extends BaseTest {
     public void searchShowsResults() {
         String user = ConfigReader.username();
         String pass = ConfigReader.password();
-        if (user.isEmpty() || pass.isEmpty() || user.equals("your-email@example.com")) {
-            throw new SkipException("Credentials are not configured in config.properties");
+
+        if (user.isEmpty() || pass.isEmpty()
+                || user.equals("your-email@example.com")) {
+            throw new SkipException(
+                    "Credentials are not configured in config.properties");
         }
 
         LoginPage loginPage = new LoginPage(driver).open();
         loginPage.login(user, pass);
         loginPage.waitForOutcome();
+
         if (loginPage.isSecurityCheckpoint()) {
             loginPage.waitForManualVerification();
         }
-        Assert.assertTrue(loginPage.isLoggedIn(), "Login failed: " + driver.getCurrentUrl());
 
-        SearchPage searchPage = new SearchPage(driver).search("software testing");
+        Assert.assertTrue(
+                loginPage.isLoggedIn(),
+                "Login failed: " + driver.getCurrentUrl());
 
-        Assert.assertTrue(searchPage.isResultsPage(),
-                "Expected a search results URL but was: " + driver.getCurrentUrl());
-        Assert.assertTrue(driver.getCurrentUrl().contains("software"),
-                "Results URL should contain the search term: " + driver.getCurrentUrl());
-        Assert.assertTrue(searchPage.isAnyResultVisible(),
+        SearchPage searchPage =
+                new SearchPage(driver).search("software testing");
+
+        Assert.assertTrue(
+                searchPage.isResultsPage(),
+                "Expected a search results URL but was: "
+                        + driver.getCurrentUrl());
+
+        Assert.assertTrue(
+                driver.getCurrentUrl().contains("software"),
+                "Results URL should contain the search term: "
+                        + driver.getCurrentUrl());
+
+        Assert.assertTrue(
+                searchPage.isAnyResultVisible(),
                 "At least one search result should be visible");
     }
 }
