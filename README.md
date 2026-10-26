@@ -13,7 +13,7 @@ Automated UI tests for LinkedIn written with Java, Selenium WebDriver and TestNG
 ## Requirements
 - Java 17 or later (developed with Java 27)
 - Maven 3.9 or later
-- Google Chrome (the driver is downloaded automatically by Selenium Manager)
+- Mozilla Firefox (GeckoDriver is managed automatically by Selenium Manager)
 
 ## Setup
 1. Clone the repository.
